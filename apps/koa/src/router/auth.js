@@ -1,13 +1,13 @@
-import Router from "koa-router";
-import { generateJWT, clearJWT, verifyRefreshJWT } from "../middware/auth.js";
+import Router from 'koa-router';
+import { generateJWT, clearJWT, verifyRefreshJWT } from '../middware/auth';
 
 const router = Router();
 
-router.post("/login", generateJWT, (ctx, next) => {
+router.post('/login', generateJWT, (ctx, next) => {
   const req = ctx.request;
-  const userName = req.body["userName"];
+  const { userName } = req.body;
 
-  const user = userList.find((item) => item.name === userName);
+  const user = userList.find(item => item.name === userName);
   if (!user) {
     ctx.response.status = 401;
     return;
@@ -20,7 +20,7 @@ router.post("/login", generateJWT, (ctx, next) => {
   };
 });
 
-router.post("/refresh", verifyRefreshJWT, generateJWT, (ctx) => {
+router.post('/refresh', verifyRefreshJWT, generateJWT, ctx => {
   ctx.response.body = {
     userName: ctx.user.userName,
     access_token: ctx.access_token,
@@ -28,16 +28,16 @@ router.post("/refresh", verifyRefreshJWT, generateJWT, (ctx) => {
   };
 });
 
-router.post("/loginOut", clearJWT);
+router.post('/loginOut', clearJWT);
 
 const userList = [
   {
-    name: "Alice",
-    sex: "mail",
+    name: 'Alice',
+    sex: 'mail',
   },
   {
-    name: "Bob",
-    sex: "femail",
+    name: 'Bob',
+    sex: 'femail',
   },
 ];
 

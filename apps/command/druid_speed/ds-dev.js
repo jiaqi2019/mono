@@ -1,1 +1,1 @@
-import './glob.js'
+import './glob';

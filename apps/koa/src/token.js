@@ -3,7 +3,7 @@ import crypto, {
   createPrivateKey,
   createPublicKey,
   KeyObject,
-} from "crypto";
+} from 'crypto';
 
-console.log(crypto.randomBytes(64).toString("hex"));
-console.log(createSecretKey(Buffer.from("我是谁")).type);
+console.log(crypto.randomBytes(64).toString('hex'));
+console.log(createSecretKey(Buffer.from('我是谁')).type);

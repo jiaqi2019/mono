@@ -1,4 +1,5 @@
-import {Command } from "commander"
+import { Command } from 'commander';
+
 const program = new Command();
 
 // program
@@ -12,16 +13,12 @@ const program = new Command();
 //   });
 
 const brew = program.command('brew [x]');
-brew
-    .command('tea')
-    .action(() => {
-        console.log('brew tea');
-    });
-brew
-    .command('coffee')
-    .action(() => {
-        console.log('brew coffee');
-    });
+brew.command('tea').action(() => {
+  console.log('brew tea');
+});
+brew.command('coffee').action(() => {
+  console.log('brew coffee');
+});
 
 // // Add nested commands using `.addCommand().
 // // The command could be created separately in another module.
@@ -42,34 +39,33 @@ brew
 
 // program.addCommand(makeHeatCommand());
 
-
 function myParseInt(value, dummyPrevious) {
-    // parseInt takes a string and a radix
-    const parsedValue = parseInt(value, 10);
-    if (isNaN(parsedValue)) {
-      throw new commander.InvalidArgumentError('Not a number.');
-    }
-    return parsedValue;
+  // parseInt takes a string and a radix
+  const parsedValue = parseInt(value, 10);
+  if (isNaN(parsedValue)) {
+    throw new Command.InvalidArgumentError('Not a number.');
   }
-  
-  // The previous value passed to the custom processing is used when processing variadic values.
-  function mySum(value, total) {
-    return total + myParseInt(value);
-  }
-  
-  program
-    .command('add')
-    .argument('<first>', 'integer argument', myParseInt)
-    .argument('[second]', 'integer argument', myParseInt, 1000)
-    .action((first, second) => {
-      console.log(`${first} + ${second} = ${first + second}`);
-    });
-  
-  program
-    .command('sum')
-    .argument('<value...>', 'values to be summed', mySum, 0)
-    .action((total) => {
-      console.log(`sum is ${total}`);
-    });
+  return parsedValue;
+}
+
+// The previous value passed to the custom processing is used when processing variadic values.
+function mySum(value, total) {
+  return total + myParseInt(value);
+}
+
+program
+  .command('add')
+  .argument('<first>', 'integer argument', myParseInt)
+  .argument('[second]', 'integer argument', myParseInt, 1000)
+  .action((first, second) => {
+    console.log(`${first} + ${second} = ${first + second}`);
+  });
+
+program
+  .command('sum')
+  .argument('<value...>', 'values to be summed', mySum, 0)
+  .action(total => {
+    console.log(`sum is ${total}`);
+  });
 
 program.parse(process.argv);

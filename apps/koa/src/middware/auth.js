@@ -1,21 +1,21 @@
-import jwt from "jsonwebtoken";
-import "dotenv/config";
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
 let refreshTokenList = [];
 
 export const generateJWT = (ctx, next) => {
-  const userName = ctx.request.body["userName"] || ctx.user.userName;
+  const userName = ctx.request.body.userName || ctx.user.userName;
   const token = jwt.sign(
     {
       userName,
     },
     process.env.ACCESS_TOKEN,
     {
-      expiresIn: "15s",
-      audience: "aud",
-      issuer: "iss",
-      subject: "sub",
-      jwtid: "jti",
+      expiresIn: '15s',
+      audience: 'aud',
+      issuer: 'iss',
+      subject: 'sub',
+      jwtid: 'jti',
     },
   );
   const refreshToken = jwt.sign(
@@ -32,7 +32,7 @@ export const generateJWT = (ctx, next) => {
 };
 
 export const verifyJWT = (ctx, next) => {
-  const accessToken = ctx.request.header.authorization?.split(" ")[1];
+  const accessToken = ctx.request.header.authorization?.split(' ')[1];
 
   if (!accessToken) {
     return (ctx.response.status = 401);
@@ -49,12 +49,9 @@ export const verifyJWT = (ctx, next) => {
 
 export const verifyRefreshJWT = (ctx, next) => {
   const req = ctx.request;
-  const refreshToken = req.body["refreshToken"];
+  const { refreshToken } = req.body;
 
-  if (
-    !refreshToken ||
-    !refreshTokenList.find((item) => item === refreshToken)
-  ) {
+  if (!refreshToken || !refreshTokenList.find(item => item === refreshToken)) {
     return (ctx.response.status = 401);
   }
   jwt.verify(refreshToken, process.env.ACCESS_REFRESH_TOKEN, (error, user) => {
@@ -69,7 +66,7 @@ export const verifyRefreshJWT = (ctx, next) => {
 
 export const clearJWT = (ctx, next) => {
   refreshTokenList = refreshTokenList.filter(
-    (item) => item !== ctx.request.body.refreshToken,
+    item => item !== ctx.request.body.refreshToken,
   );
   ctx.response.status = 204;
   next();
