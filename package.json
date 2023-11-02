@@ -22,14 +22,6 @@
     "*.{js,jsx,ts,tsx,mjs,cjs}": [
       "node --max_old_space_size=8192 ./node_modules/eslint/bin/eslint.js --fix --color --cache --quiet"
     ],
-    "*.{ts,tsx}": [
-      "eslint --fix --color --cache --quiet",
-      "git add"
-    ],
-    "*.{mjs,mjsx,cjs,cjsx}": [
-      "eslint --fix --color --cache --quiet",
-      "git add"
-    ],
     "*.less": [
       "stylelint --fix",
       "git add"
