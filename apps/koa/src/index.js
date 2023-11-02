@@ -1,7 +1,7 @@
 import Koa from 'koa';
+import koaBodyparser from 'koa-bodyparser';
 import router from './router/router';
 import 'dotenv/config';
-import koaBodyparser from 'koa-bodyparser';
 
 const app = new Koa();
 

@@ -23,6 +23,23 @@
       "node --max_old_space_size=8192 ./node_modules/eslint/bin/eslint.js --fix --color --cache --quiet"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    },
+    "*.{ts,tsx}": [
+      "eslint --fix --color --cache --quiet",
+      "git add"
+    ],
+    "*.{mjs,mjsx,cjs,cjsx}": [
+      "eslint --fix --color --cache --quiet",
+      "git add"
+    ],
+    "*.less": [
+      "stylelint --fix",
+      "git add"
+    ]
+  },
   "eslintIgnore": [
     "node_modules/",
     "dist/",
@@ -37,7 +54,7 @@
   "devDependencies": {
     "@modern-js/monorepo-tools": "2.39.0",
     "@modern-js/eslint-config": "2.39.0",
-    "@modern-js/tsconfig":"2.39.0",
+    "@modern-js/tsconfig": "2.39.0",
     "@modern-js-app/eslint-config": "2.39.0",
     "lint-staged": "~13.1.0",
     "prettier": "^2.6.2",
