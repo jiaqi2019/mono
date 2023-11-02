@@ -1,0 +1,32 @@
+GET http://localhost:3000/
+
+
+###
+POST http://localhost:3000/submit
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsaWNlIiwiaWF0IjoxNjk4NTUzNTgzLCJleHAiOjE2OTg1NTM1OTh9.g3HOn5_nqeFtrJPJZWDEalqohb7Db1nfAOrKcNqzB4c
+
+
+
+###
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "userName":"Alice"
+}
+
+###
+POST http://localhost:4000/refresh
+Content-Type: application/json
+
+{
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsaWNlIiwiaWF0IjoxNjk4NTQ4OTAzfQ.LjKIsEGaxGC_lVqmYI8zTA_h4V1P1q7WulPTC-ZP38Y"
+}
+
+###
+POST http://localhost:4000/loginout
+Content-Type: application/json
+
+{
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsaWNlIiwiaWF0IjoxNjk4NDgxNDI1fQ.id6d1A4f9a5XlH_Aiv_i6jR-l_KXQiJJtneRu-jE0h8"
+}
