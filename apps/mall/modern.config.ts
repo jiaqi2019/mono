@@ -1,9 +1,14 @@
 import { appTools, defineConfig } from '@modern-js/app-tools';
+import { koaPlugin } from '@modern-js/plugin-koa';
+import { bffPlugin } from '@modern-js/plugin-bff';
 
 // https://modernjs.dev/en/configure/app/usage
 export default defineConfig({
   runtime: {
     router: true,
   },
-  plugins: [appTools()],
+  bff: {
+    enableHandleWeb: true,
+  },
+  plugins: [appTools(), koaPlugin(), bffPlugin()],
 });
