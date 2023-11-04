@@ -1,5 +1,5 @@
 import KoaRouter from 'koa-router';
-import { verifyJWT } from '../middware/auth';
+import { verifyJWT } from '../middware/auth.js';
 
 const router = KoaRouter({
   exclusive: true,

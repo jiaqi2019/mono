@@ -1,5 +1,5 @@
 import Router from 'koa-router';
-import { generateJWT, clearJWT, verifyRefreshJWT } from '../middware/auth';
+import { generateJWT, clearJWT, verifyRefreshJWT } from '../middware/auth.js';
 
 const router = Router();
 

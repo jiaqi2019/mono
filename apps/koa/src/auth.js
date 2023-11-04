@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import koaBodyparser from 'koa-bodyparser';
-import router from './router/auth';
+import router from './router/auth.js';
 
 const app = new Koa();
 
