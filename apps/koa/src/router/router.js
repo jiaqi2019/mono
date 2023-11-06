@@ -1,5 +1,11 @@
 import KoaRouter from 'koa-router';
+import jwt from 'koa-jwt';
 import { verifyJWT } from '../middware/auth.js';
+import 'dotenv/config';
+
+const verifyJwt = jwt({
+  secret: process.env.ACCESS_TOKEN,
+});
 
 const router = KoaRouter({
   exclusive: true,
@@ -42,9 +48,9 @@ router.get(/reg$/, (ctx, next) => {
   ctx.res.end();
 });
 
-router.post('/submit', verifyJWT, (ctx, next) => {
-  const { user } = ctx;
-  if (!user) {
+router.post('/submit', verifyJwt, (ctx, next) => {
+  const { user, state } = ctx;
+  if (!user && !state.user) {
     return (ctx.response.status = 401);
   }
   ctx.response.body = user;

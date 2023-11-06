@@ -11,7 +11,7 @@ export const generateJWT = (ctx, next) => {
     },
     process.env.ACCESS_TOKEN,
     {
-      expiresIn: '15s',
+      expiresIn: '1d',
       audience: 'aud',
       issuer: 'iss',
       subject: 'sub',

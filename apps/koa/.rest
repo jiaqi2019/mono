@@ -3,7 +3,7 @@ GET http://localhost:3000/
 
 ###
 POST http://localhost:3000/submit
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkFsaWNlIiwiaWF0IjoxNjk4NTUzNTgzLCJleHAiOjE2OTg1NTM1OTh9.g3HOn5_nqeFtrJPJZWDEalqohb7Db1nfAOrKcNqzB4c
+Authorization: Bearer
 
 
 
