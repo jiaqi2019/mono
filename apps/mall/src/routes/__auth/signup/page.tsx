@@ -15,17 +15,39 @@ import {
   Text,
   useColorModeValue,
   Link,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { post as signup } from '@api/auth/signup';
+import { useNavigate } from '@modern-js/runtime/router';
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const toast = useToast();
+  const navigate = useNavigate();
 
-  const onSignup = () => {};
+  const onSignup = async () => {
+    const { code, msg } = await signup({ data: { username, email, password } });
+    if (code === 0) {
+      toast({
+        title: '注册成功',
+        position: 'top',
+        status: 'success',
+      });
+      navigate('/login');
+    } else {
+      toast({
+        title: '注册失败',
+        description: msg,
+        position: 'top',
+        status: 'error',
+      });
+    }
+  };
 
   return (
     <Flex

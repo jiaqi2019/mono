@@ -10,20 +10,35 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useNavigate } from '@modern-js/runtime/router';
-import { get as login } from '@api/auth/login';
+import { post as login } from '@api/auth/login';
 
 export default function SimpleCard() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const toast = useToast();
   const navigate = useNavigate();
   const onSignIn = async () => {
     if (!username || !password) {
       return;
     }
-    await login();
+    const { code, msg, token } = await login({ data: { username, password } });
+    if (code === 0 && token) {
+      localStorage.setItem('token', token);
+      navigate('/');
+    } else {
+      toast({
+        title: '登录失败',
+        description: msg,
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+        position: 'top',
+      });
+    }
   };
   const onSignUp = () => {
     navigate('/signup');

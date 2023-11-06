@@ -13,7 +13,8 @@
     "release": "modern release",
     "deploy": "modern deploy",
     "lint": "modern lint",
-    "upgrade": "modern upgrade"
+    "upgrade": "modern upgrade",
+    "mall": "pnpm --filter mall dev"
   },
   "engines": {
     "node": ">=16.18.1"
